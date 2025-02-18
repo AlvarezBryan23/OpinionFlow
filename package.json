@@ -1,0 +1,32 @@
+{
+  "name": "opinionflow",
+  "version": "1.0.0",
+  "description": "API sobre una getión de opiniones",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlvarezBryan23/OpinionFlow.git"
+  },
+  "keywords": [],
+  "author": "Bryan Alvarez",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/AlvarezBryan23/OpinionFlow/issues"
+  },
+  "homepage": "https://github.com/AlvarezBryan23/OpinionFlow#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "mongoose": "^8.10.1",
+    "morgan": "^1.10.0",
+    "opinionflow": "file:"
+  }
+}
