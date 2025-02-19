@@ -18,3 +18,10 @@ export const updateProfilePictureValidator = [
     deleteFileOnError,
     handleErrors
 ]
+export const updatePasswordValidator = [
+    param("uid").isMongoId().withMessage("No es un ID válido"),
+    param("uid").custom(userExists),
+    body("newPassword").isLength({min: 8}).withMessage("La contraseña debe tener al menos 8 caracteres"),
+    validarCampos,
+    handleErrors
+]

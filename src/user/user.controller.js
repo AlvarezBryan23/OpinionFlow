@@ -1,8 +1,9 @@
-import { hash } from "argon2";
+import { hash, verify } from "argon2";
 import User from "./user.model.js"
 import fs from "fs/promises"
 import {join, dirname} from "path"
 import { fileURLToPath } from "url";
+
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -22,6 +23,50 @@ export const updateUser = async(req, res) =>{
         res.status(500).json({
             success: false,
             message: "Error al actualizar al usuario",
+            error: err.message
+        })
+    }
+}
+
+export const updatePassword = async(req, res) =>{
+    try{
+        const { uid } = req.params
+        const { oldPassword} = req.body
+        const { newPassword} = req.body
+
+        const user = await User.findById(uid)
+
+        const OldPassword = await verify(user.password, oldPassword)
+        
+
+        if(!OldPassword){
+            return res.status(500).json({
+                success: false,
+                message:"Debe poner la antigua contraseña"
+            })
+        }
+
+        const matchOldAndNewPassword = await verify(user.password, newPassword)
+        if(!matchOldAndNewPassword){
+            return res.status(500).json({
+                success: false,
+                message: "La nueva contraseña no puede ser igual a la anterior"
+            })
+        }
+
+        const encryptedPassword = await hash(newPassword)
+
+        await User.findByIdAndUpdate(uid, {password: encryptedPassword}, {new:true})
+
+        return res.status(200).json({
+            success: true,
+            message: "Contraseña actualizada"
+        })
+
+    }catch(err){
+        return res.status(500).json({
+            success: false,
+            message: "Error al actualizar la contraseña",
             error: err.message
         })
     }
