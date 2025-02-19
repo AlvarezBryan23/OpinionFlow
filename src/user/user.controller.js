@@ -28,49 +28,47 @@ export const updateUser = async(req, res) =>{
     }
 }
 
-export const updatePassword = async(req, res) =>{
+export const updatePassword = async (req, res) => {
     try{
         const { uid } = req.params
-        const { oldPassword} = req.body
-        const { newPassword} = req.body
-
+        const { newPassword } =  req.body
+        const { oldPassword } =  req.body
+ 
         const user = await User.findById(uid)
-
-        const OldPassword = await verify(user.password, oldPassword)
-        
-
-        if(!OldPassword){
-            return res.status(500).json({
+ 
+        const matchPassword = await verify(user.password, newPassword)
+        const isOldPasswordCorrect = await verify(user.password, oldPassword);
+        if (!isOldPasswordCorrect) {
+            return res.status(400).json({
                 success: false,
-                message:"Debe poner la antigua contraseña"
-            })
+                message: "La contraseña anterior es incorrecta"
+            });
         }
-
-        const matchOldAndNewPassword = await verify(user.password, newPassword)
-        if(!matchOldAndNewPassword){
-            return res.status(500).json({
+        if(matchPassword){
+            return res.status(400).json({
                 success: false,
                 message: "La nueva contraseña no puede ser igual a la anterior"
             })
         }
-
+       
         const encryptedPassword = await hash(newPassword)
-
-        await User.findByIdAndUpdate(uid, {password: encryptedPassword}, {new:true})
-
+ 
+        await User.findByIdAndUpdate(uid, {password: encryptedPassword})
+ 
         return res.status(200).json({
             success: true,
             message: "Contraseña actualizada"
         })
-
+ 
     }catch(err){
         return res.status(500).json({
             success: false,
-            message: "Error al actualizar la contraseña",
+            message: "Error al actualizar contraseña",
             error: err.message
         })
     }
 }
+ 
 
 export const updateProfilePictureU = async(req, res) => {
     try{
