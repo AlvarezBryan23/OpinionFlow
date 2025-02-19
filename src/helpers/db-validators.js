@@ -6,3 +6,10 @@ export const existeEmail = async(email) =>{
         throw new Error(`El email ${email} ya fue registrado previamente`)
     }
 }
+
+export const userExists = async(uid = " ") =>{
+    const existe = await User.findById(uid)
+    if(!existe){
+        throw new Error("No existe el usuairo con el ID proporcionado")
+    }
+}
