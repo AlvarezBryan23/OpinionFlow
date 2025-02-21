@@ -1,10 +1,12 @@
 import { Router } from "express";
-import { createPublicacionValidator } from "../middlewares/publicaciones-validators.js";
-import { savePublicaciones } from "./publicaciones.controller.js";
+import { createPublicacionValidator, updatePublicacionValidator } from "../middlewares/publicaciones-validators.js";
+import { savePublicaciones, updatePublicaciones } from "./publicaciones.controller.js";
 import { validateJWT } from "../middlewares/validate-jwt.js";
 
 const router = Router();
 
-router.post("/addPublicacion", createPublicacionValidator, savePublicaciones)
+router.post("/addPublicacion", createPublicacionValidator, savePublicaciones);
+
+router.put("/updatePublicacion/:id", updatePublicacionValidator, updatePublicaciones);
 
 export default router;

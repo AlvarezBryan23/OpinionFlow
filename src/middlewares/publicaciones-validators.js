@@ -9,7 +9,13 @@ export const createPublicacionValidator = [
     body("titulo").notEmpty().withMessage("El titulo es requerido"),
     body("categoria").notEmpty().withMessage("La categoria es requerida"),
     body("textoPrincipal").notEmpty().withMessage("El testo principal es requerido"),
-    
+    validarCampos,
+    handleErrors
+]
+
+export const updatePublicacionValidator = [
+    param("id", "No es un ID válido").isMongoId(),
+    param("id").custom(publicacionExists),
     validarCampos,
     handleErrors
 ]

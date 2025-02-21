@@ -34,3 +34,25 @@ export const savePublicaciones = async (req, res) => {
         });
     }
 }
+
+
+export const updatePublicaciones = async(req, res) =>{
+    try{
+        const { id } = req.params;
+        const data = req.body;
+
+        const publicacion = await Publicacion.findByIdAndUpdate(id, data, {new: true})
+
+        res.status(200).json({
+            success: true,
+            message: "Tu publicación se actualizo",
+            publicacion,
+        });
+    }catch(err){
+        res.status(500).json({
+            success: false,
+            message: "Error al actualizar tu publicación",
+            error: err.message
+        })
+    }
+}
