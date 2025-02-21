@@ -56,3 +56,22 @@ export const updatePublicaciones = async(req, res) =>{
         })
     }
 }
+
+export const deletePublicacion = async(req, res) =>{
+    try{
+        const { id } = req.params;
+
+        await Publicacion.findByIdAndDelete(id, {status: false})
+
+        res.status(200).json({
+            success: true,
+            message: "Publicación eliminada"
+        })
+    }catch(err){
+        res.status(500).json({
+            success: false,
+            message: 'Error al eliminar la publicación',
+            err
+        })
+    }
+}

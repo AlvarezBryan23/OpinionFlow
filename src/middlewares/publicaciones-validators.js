@@ -15,6 +15,14 @@ export const createPublicacionValidator = [
 
 export const updatePublicacionValidator = [
     param("id", "No es un ID válido").isMongoId(),
+    param("id").custom(publicacionExists),  
+    validarCampos,
+    handleErrors
+]
+
+export const deletePublicacioneValidator = [
+    
+    param("id").isMongoId().withMessage("No es un ID válido"),
     param("id").custom(publicacionExists),
     validarCampos,
     handleErrors
