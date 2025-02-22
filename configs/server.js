@@ -8,7 +8,7 @@ import { dbConnection } from './mongo.js'
 import authRoutes from "../src/auth/auth.routes.js"
 import userRoutes from "../src/user/user.route.js"
 import publicacionRoutes from "../src/publicaciones/publicaciones.routes.js"
-import comentarioRoutes from "../src/publicaciones/publicaciones.models.js"
+import comentarioRoutes from "../src/comentarios/comentario.routes.js"
 import apiLimiter from '../src/middlewares/validar-cant-peticiones.js'
 
 const middlewares = (app) =>{
@@ -24,7 +24,7 @@ const routes = (app) =>{
     app.use("/opinionFlow/v1/auth", authRoutes)
     app.use("/opinionFlow/v1/user", userRoutes)
     app.use("/opinionFlow/v1/publicaciones", publicacionRoutes)
-    app.use("/opinionFlow/v1/publicaciones", comentarioRoutes)
+    app.use("/opinionFlow/v1/comentario", comentarioRoutes)
 }
 
 const conectarDB = async () =>{

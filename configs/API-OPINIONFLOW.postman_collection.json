@@ -239,6 +239,29 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Comentarios",
+			"item": [
+				{
+					"name": "Agregar Co",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"opiniones\": \"Es muy grave y el gobierno no hace nada\",\r\n    \"informacion\": \"Es muy util que extendamos la mano para pdeor ayduar a los demás\",\r\n    \"keeper\": \"67b81e8a29792f851d9ec789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3005/opinionFlow/v1/comentario/addComentario"
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
