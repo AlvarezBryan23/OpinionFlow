@@ -70,7 +70,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"JM\",\r\n    \"password\": \"Bry22an$\"\r\n}",
+							"raw": "{\r\n    \"username\": \"IAlvarez\",\r\n    \"password\": \"Bry22an$\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -164,6 +164,77 @@
 								}
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Publicaciones",
+			"item": [
+				{
+					"name": "Publicacion Ca",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2I0MjYzZDI2ZTE3M2NhNWZhMDdlYjkiLCJpYXQiOjE3NDAxMTcxMTgsImV4cCI6MTc0MDEyMDcxOH0.qzehyE3BFdmrVe8js3Qdmi4CIFAj_cSC5ylshq3PdgE"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Se empieza a reciclar\",\r\n    \"categoria\": \"Noticia\",\r\n    \"textoPrincipal\": \"Se mejorara el rendimiento de la basura\",\r\n    \"email\": \"Ialvarez@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3005/opinionFlow/v1/publicaciones/addPublicacion"
+					},
+					"response": []
+				},
+				{
+					"name": "Publicacion Edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Habra una solucion para israel?\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3005/opinionFlow/v1/publicaciones/updatePublicacion/67b81e8a29792f851d9ec789"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Publi",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2I0MjYzZDI2ZTE3M2NhNWZhMDdlYjkiLCJpYXQiOjE3NDAxMjgwODksImV4cCI6MTc0MDEzMTY4OX0.Ki3VWUM-OKWzNon_TajARdt2frXoW66t2w8_ec1hWBc"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3005/opinionFlow/v1/publicaciones/deletePublicacion/67b83fa49ccd4783b62552ce"
 					},
 					"response": []
 				}
